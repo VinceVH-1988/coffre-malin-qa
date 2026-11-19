@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Coffre Malin">
+<meta name="theme-color" content="#1f3a5f">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playwrite+BE+WAL:wght@400&display=swap" rel="stylesheet">
+<title>Coffre Malin</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<main>
+  <h1 id="title">Le coffre des Filous</h1>
+  <p class="lead" id="lead"></p>
+
+  <div class="vault-wrap"><div class="vault" id="vault">
+    <div class="inside" aria-live="polite">
+      <div class="label" id="in-label"></div>
+      <div class="code" id="code-out"></div>
+      <div class="hint" id="in-hint"></div>
+    </div>
+    <div class="door">
+      <span class="hinge a"></span><span class="hinge b"></span>
+      <div class="bolts left" id="bolts-l"></div>
+      <div class="bolts right" id="bolts-r"></div>
+      <div class="plate">
+        <div class="calc" id="calc"></div>
+        <button type="button" class="btn listen-btn" id="word-listen" style="display:none">Écouter</button>
+        <div class="answer empty" id="answer" aria-live="polite"></div>
+        <div class="word-note" id="word-note" aria-live="polite"></div>
+        <div class="word-zones cursive" id="word-zones" style="display:none"></div>
+        <div class="sentence-zone cursive" id="sentence-zone" style="display:none"></div>
+        <div class="progress" id="progress"></div>
+      </div>
+    </div>
+  </div></div>
+
+  <div class="pad" id="pad">
+    <button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button>
+    <button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button>
+    <button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button>
+    <button class="erase" data-k="del">Effacer</button><button data-k="0">0</button><button class="ok" data-k="ok">Valider</button>
+  </div>
+
+  <div class="dictee-pad" id="dictee-pad">
+    <div class="kb" id="word-kb"></div>
+    <button type="button" class="btn teal" id="word-validate">Valider</button>
+  </div>
+
+  <div class="choice-pad" id="choice-pad">
+    <div class="choices" id="word-choices"></div>
+  </div>
+
+  <div class="verbe-pad" id="verbe-pad">
+    <button type="button" class="btn teal" id="verbe-validate">Valider</button>
+  </div>
+
+  <div class="habille-pad" id="habille-pad">
+    <button type="button" class="hp-btn" id="hp-habille">Habillé</button>
+    <button type="button" class="hp-btn" id="hp-pyjama">En pyjama</button>
+  </div>
+
+  <div class="foot"><button class="btn ghost" id="again" style="display:none">Rejouer</button><button class="parent-link" id="profiles-link">Profils</button><button class="parent-link" id="filous-link">Filous</button><button class="parent-link" data-pin>Réglages</button></div>
+</main>
+
+<section class="home" id="home" aria-label="Filou">
+  <div class="kicker">BRIGADE MALIN</div>
+  <h1 id="home-title">Le coffre des Filous</h1>
+  <div class="home-art" id="home-art"></div>
+  <div class="modes">
+    <button class="mode" id="go-coffre"><span class="mode-name">Mode coffre</span><span class="mode-desc" id="desc-coffre"></span></button>
+    <button class="mode infini" id="go-infini"><span class="mode-name">Mode infini</span><span class="mode-desc" id="desc-infini"></span></button>
+    <button class="mode montre" id="go-montre"><span class="mode-name">Contre la montre</span><span class="mode-desc" id="desc-montre"></span></button>
+  </div>
+  <div class="home-info" id="home-info"></div>
+  <div class="foot"><button class="parent-link" id="home-back">Filous</button><button class="parent-link" data-pin>Réglages</button></div>
+</section>
+
+<section class="profiles" id="profiles" aria-label="Choisis ton profil">
+  <div class="kicker">BRIGADE MALIN</div>
+  <h1>Qui enquête aujourd'hui ?</h1>
+  <div class="profile-grid" id="profile-grid"></div>
+  <p class="profiles-info">Choisis ton profil, ou demande à un parent d'en créer un nouveau.</p>
+</section>
+
+<section class="filous" id="filous" aria-label="Filous disponibles">
+  <div class="kicker" id="filous-kicker">BRIGADE MALIN</div>
+  <h1 id="filous-title">Les Filous</h1>
+  <div class="filou-list" id="filou-list"></div>
+  <div class="foot"><button class="parent-link" id="filous-back">Profils</button><button class="parent-link" data-pin>Réglages</button></div>
+</section>
+
+<section class="filous" id="activites" aria-label="Choisis une épreuve">
+  <div class="kicker" id="activites-kicker">LE FAUSSAIRE</div>
+  <h1>Quelle épreuve ?</h1>
+  <div class="filou-list" id="activite-list"></div>
+  <div class="foot"><button class="parent-link" id="activites-back">Filous</button><button class="parent-link" data-pin>Réglages</button></div>
+</section>
+
+<section class="menteur-screen" id="menteur-screen" aria-label="Le Menteur">
+  <div class="kicker">LE MENTEUR</div>
+  <h1>Vrai ou faux ?</h1>
+  <div class="menteur-question" id="menteur-question"></div>
+  <div class="menteur-choices" id="menteur-choices"></div>
+  <div class="menteur-rappel" id="menteur-rappel" style="display:none"></div>
+  <button type="button" class="btn teal" id="menteur-next" style="display:none">Question suivante</button>
+  <div class="foot"><button class="parent-link" id="menteur-back">Filous</button><button class="parent-link" data-pin>Réglages</button></div>
+</section>
+
+<section class="avatarcreate" id="avatarcreate" aria-label="Créer ton profil">
+  <div class="inner">
+    <h2 id="av-title">Crée ton profil</h2>
+    <div class="av-preview" id="av-preview"></div>
+    <div class="sub">Couleur de peau</div>
+    <div class="swatch-row" id="av-skin"></div>
+    <div class="sub">Couleur de cheveux</div>
+    <div class="swatch-row" id="av-hair"></div>
+    <div class="sub">Couleur des yeux</div>
+    <div class="swatch-row" id="av-eyes"></div>
+    <div class="sub">Couleur du manteau</div>
+    <div class="swatch-row" id="av-coat"></div>
+    <div class="sub">Longueur des cheveux</div>
+    <div class="length-row" id="av-length"></div>
+    <div class="sub">Objet</div>
+    <div class="length-row" id="av-accessory"></div>
+    <div class="sub">Ton prénom</div>
+    <div class="name-box empty" id="av-name"></div>
+    <div class="kb" id="av-kb"></div>
+    <div class="warn" id="av-warn"></div>
+    <div class="row"><button class="btn" id="av-save">Enregistrer</button><button class="btn ghost" id="av-cancel">Annuler</button></div>
+  </div>
+</section>
+
+<canvas id="fx" aria-hidden="true"></canvas>
+
+<div class="catch" id="catch" role="dialog" aria-modal="true" aria-labelledby="catch-title">
+  <div class="card">
+    <div class="who" id="catch-who"></div>
+    <h2 id="catch-title"></h2>
+    <p id="catch-msg"></p>
+    <div class="steps" id="steps"></div>
+    <button class="btn" id="catch-ok">Je recommence</button>
+  </div>
+</div>
+
+<div class="pin" id="pin" role="dialog" aria-modal="true" aria-labelledby="pin-title">
+  <div class="card">
+    <h2 id="pin-title">Code du parent</h2>
+    <div class="dots" id="dots"><span></span><span></span><span></span><span></span></div>
+    <p class="msg" id="pin-msg"></p>
+    <div class="pad" id="pin-pad">
+      <button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button>
+      <button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button>
+      <button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button>
+      <button class="erase" data-k="cancel">Annuler</button><button data-k="0">0</button><button class="erase" data-k="del">Effacer</button>
+    </div>
+  </div>
+</div>
+
+<div class="catch" id="minuteur-lock" role="dialog" aria-modal="true" aria-labelledby="minuteur-lock-title">
+  <div class="card">
+    <h2 id="minuteur-lock-title">Temps de jeu terminé pour aujourd'hui !</h2>
+    <p>Demande à un parent de débloquer un peu plus de temps.</p>
+    <button type="button" class="btn" id="minuteur-lock-unlock">Code parent</button>
+  </div>
+</div>
+
+<section class="settings" id="settings" aria-label="Réglages du chef de la Brigade">
+  <div class="inner">
+    <h2>Réglages du chef de la Brigade</h2>
+    <div class="chips" id="settings-child-tabs"></div>
+    <div class="sub" id="settings-scope-label"></div>
+
+    <div class="group" data-scope="commun">
+      <div class="group-head"><h3>Profils</h3></div>
+      <ul class="plist" id="p-list"></ul>
+      <div class="row" style="margin-top:8px"><button class="btn ghost" id="p-add">+ Nouveau profil</button></div>
+    </div>
+
+    <div class="group" data-scope="child">
+      <div class="group-head"><h3>Filous disponibles</h3></div>
+      <div id="f-toggles"></div>
+    </div>
+
+    <div class="group" data-scope="child">
+      <div class="group-head"><h3>Minuteur de temps de jeu</h3></div>
+      <div class="sub">Temps de jeu autorisé par jour pour ce profil, décompté seulement pendant les épreuves. Par défaut : pas de limite.</div>
+      <div class="chips" data-radio="minuteur-mode"></div>
+      <div class="field" id="f-minuteur-global" style="display:none"><label for="s-minuteur-global">Minutes par jour</label><input id="s-minuteur-global" type="number" inputmode="numeric" min="1" max="300" placeholder="ex. 20"></div>
+      <div id="minuteur-perfilou" style="display:none"></div>
+      <div class="field" id="f-minuteur-bonus" style="display:none"><label for="s-minuteur-bonus">Supplément après déblocage (minutes)</label><input id="s-minuteur-bonus" type="number" inputmode="numeric" min="1" max="120" placeholder="ex. 15"></div>
+    </div>
+
+    <div class="group" data-scope="commun">
+      <div class="group-head"><h3>Contenu</h3></div>
+      <div class="stats" id="content-info"></div>
+      <div class="sub">Aperçu de l'écriture cursive</div>
+      <div class="cursive-sample">une enveloppe</div>
+    </div>
+
+    <div class="group" data-scope="commun">
+      <div class="field"><label for="s-pin">Code du parent</label><input id="s-pin" inputmode="numeric" maxlength="4"></div>
+    </div>
+
+    <div class="group" data-scope="child">
+      <div class="group-head"><h3>Réglages des épreuves</h3></div>
+      <div class="sub">Chaque filou a ses propres épreuves et son propre coffre.</div>
+      <div id="calc-tabs"></div>
+    </div>
+
+    <div class="group" id="g-coffre-mode">
+      <div class="group-head"><h3 id="coffre-tab-title">Mode coffre</h3></div>
+      <div class="field"><label for="s-target">Bonnes réponses d'affilée</label><input id="s-target" type="number" inputmode="numeric" min="2" max="20"></div>
+      <div class="sub">Quand le coffre s'ouvre</div><div class="chips" data-radio="reward"></div>
+      <div class="field" id="f-code"><label for="s-code">Code du cadenas</label><input id="s-code" inputmode="numeric" maxlength="6"></div>
+    </div>
+    <div class="group" id="g-menteur" data-tab="menteur">
+      <div class="group-head"><h3>Le Menteur</h3></div>
+      <div class="sub">Thèmes actifs pour ce profil</div>
+      <div class="chips" data-list="menteur-themes"></div>
+      <div class="sub">Pas de coffre pour Le Menteur : c'est un quiz de découverte, sans enjeu.</div>
+    </div>
+
+    <div class="group" id="g-add" data-tab="retenues">
+      <div class="group-head"><h3>Additions</h3><label class="switch"><input type="checkbox" data-op="add" aria-label="Additions"><span></span></label></div>
+      <div class="group-body">
+        <div class="sub">Nombres</div><div class="chips" data-list="add-forms"></div>
+        <div class="sub">Passage de la dizaine ou de la centaine</div><div class="chips" data-radio="add-pass"></div>
+        <div class="sub">Résultat maximum (facultatif)</div>
+        <div class="field"><input id="s-add-max" type="number" inputmode="numeric" min="4" max="999" placeholder="ex. 100"></div>
+      </div>
+    </div>
+    <div class="group" id="g-sub" data-tab="retenues">
+      <div class="group-head"><h3>Soustractions</h3><label class="switch"><input type="checkbox" data-op="sub" aria-label="Soustractions"><span></span></label></div>
+      <div class="group-body">
+        <div class="sub">Nombres</div><div class="chips" data-list="sub-forms"></div>
+        <div class="sub">Passage de la dizaine ou de la centaine</div><div class="chips" data-radio="sub-pass"></div>
+        <div class="sub">Nombre de départ maximum (facultatif)</div>
+        <div class="field"><input id="s-sub-max" type="number" inputmode="numeric" min="3" max="999" placeholder="ex. 20"></div>
+      </div>
+    </div>
+    <div class="group" id="g-mul" data-tab="tables">
+      <div class="group-head"><h3>Multiplications</h3><label class="switch"><input type="checkbox" data-op="mul" aria-label="Multiplications"><span></span></label></div>
+      <div class="group-body">
+        <div class="sub">Tables</div><div class="chips" data-list="mul-tables"></div>
+        <div class="sub">En plus</div><div class="chips" data-list="mul-extra"></div>
+      </div>
+    </div>
+    <div class="group" id="g-div" data-tab="tables">
+      <div class="group-head"><h3>Divisions</h3><label class="switch"><input type="checkbox" data-op="div" aria-label="Divisions"><span></span></label></div>
+      <div class="group-body">
+        <div class="sub">Tables</div><div class="chips" data-list="div-tables"></div>
+      </div>
+    </div>
+    <div class="group" id="g-mix-note" data-tab="mix">
+      <div class="sub">Calcul mélangé pioche parmi les opérations actives réglées ci-dessus pour le Faussaire des Retenues et le Tricheur des Tables (onglets « Faussaire des Retenues » et « Tricheur des Tables »). Seul son propre mode coffre se règle ici.</div>
+    </div>
+    <div class="group" id="g-faussaire-dictee" data-tab="faussaire:dictee">
+      <div class="group-head"><h3>Dictée</h3></div>
+      <div class="sub">Séries actives pour ce profil</div>
+      <div class="chips" data-list="faussaire:dictee-series"></div>
+    </div>
+    <div class="group" id="g-faussaire-trou" data-tab="faussaire:trou">
+      <div class="group-head"><h3>Le trou du Faussaire</h3></div>
+      <div class="sub">Séries actives pour ce profil</div>
+      <div class="chips" data-list="faussaire:trou-series"></div>
+    </div>
+    <div class="group" id="g-faussaire-correction" data-tab="faussaire:correction">
+      <div class="group-head"><h3>Repérer et corriger</h3></div>
+      <div class="sub">Séries actives pour ce profil</div>
+      <div class="chips" data-list="faussaire:correction-series"></div>
+    </div>
+    <div class="group" id="g-deguiseur-verbe" data-tab="deguiseur:verbe">
+      <div class="group-head"><h3>Trouver le verbe</h3></div>
+      <div class="sub">Séries actives pour ce profil</div>
+      <div class="chips" data-list="deguiseur:verbe-series"></div>
+      <div class="group-head" style="margin-top:10px"><h3 style="font-size:1rem">Demander aussi l'infinitif</h3><label class="switch"><input type="checkbox" id="s-fusion-infinitif" aria-label="Demander aussi l'infinitif"><span></span></label></div>
+      <div class="sub">Une fois le verbe trouvé, l'enfant doit aussi l'écrire à l'infinitif. Si désactivé, « Écrire l'infinitif » redevient une épreuve séparée.</div>
+    </div>
+    <div class="group" id="g-deguiseur-habille" data-tab="deguiseur:habille">
+      <div class="group-head"><h3>Habillé ou en pyjama ?</h3></div>
+      <div class="sub">Séries actives pour ce profil</div>
+      <div class="chips" data-list="deguiseur:habille-series"></div>
+    </div>
+    <div class="group" id="g-deguiseur-infinitif" data-tab="deguiseur:infinitif">
+      <div class="group-head"><h3>Écrire l'infinitif</h3></div>
+      <div class="sub">Séries actives pour ce profil</div>
+      <div class="chips" data-list="deguiseur:infinitif-series"></div>
+    </div>
+
+    <div class="group" data-scope="child">
+      <div class="group-head"><h3>Records</h3></div>
+      <ul class="recs" id="recs"></ul>
+      <div class="row" style="margin-top:8px"><button class="btn ghost" id="r-reset">Effacer les records</button></div>
+    </div>
+    <div class="group" data-scope="child">
+      <div class="group-head"><h3>Statistiques</h3></div>
+      <ul class="recs" id="stats"></ul>
+      <div class="row" style="margin-top:8px"><button class="btn ghost" id="s-reset">Remettre les statistiques à zéro</button></div>
+    </div>
+
+    <div class="warn" id="warn"></div>
+    <div class="row"><button class="btn" id="s-save">Enregistrer</button><button class="btn ghost" id="s-cancel">Annuler</button></div>
+  </div>
+</section>
+<script src="data.js"></script>
+<script src="core.js"></script>
+<script src="calc.js"></script>
+<script src="faussaire.js"></script>
+<script src="deguiseur.js"></script>
+<script src="menteur.js"></script>
+<script src="ui.js"></script>
+<script src="boot.js"></script>
+</body>
+</html>

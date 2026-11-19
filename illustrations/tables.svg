@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240">
+<rect x="4" y="4" width="192" height="232" rx="22" fill="#e4f1e7"/>
+<ellipse cx="100" cy="222" rx="62" ry="8" fill="#000" opacity=".12"/>
+
+<!-- gilet -->
+<path d="M62 222 L68 148 Q100 132 132 148 L138 222 Z" fill="#2e6b3f" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M88 142 L100 168 L112 142" fill="#fff" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M92 148 L100 154 L108 148 L100 160 Z" fill="#d64545" stroke="#222" stroke-width="2"/>
+<circle cx="100" cy="182" r="3" fill="#f2b134"/><circle cx="100" cy="200" r="3" fill="#f2b134"/>
+<!-- bras + éventail de cartes -->
+<path d="M130 160 Q150 150 152 132" fill="none" stroke="#222" stroke-width="13" stroke-linecap="round"/>
+<path d="M130 160 Q150 150 152 132" fill="none" stroke="#2e6b3f" stroke-width="7" stroke-linecap="round"/>
+<g transform="translate(160 112) scale(1.15)">
+<rect x="-14" y="-40" width="28" height="40" rx="4" fill="#fff" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" transform="rotate(-24)"/>
+<rect x="-14" y="-40" width="28" height="40" rx="4" fill="#fff" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="-14" y="-40" width="28" height="40" rx="4" fill="#fff" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" transform="rotate(24)"/>
+<text x="0" y="-15" text-anchor="middle" font-family="Fredoka" font-weight="700" font-size="15" fill="#d64545">×</text>
+<text x="17" y="-22" text-anchor="middle" font-family="Fredoka" font-weight="700" font-size="13" fill="#1f3a5f" transform="rotate(24)">7</text>
+<text x="-17" y="-22" text-anchor="middle" font-family="Fredoka" font-weight="700" font-size="13" fill="#1f3a5f" transform="rotate(-24)">8</text>
+</g>
+<circle cx="152" cy="132" r="7" fill="#f5cfa8" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<!-- tête -->
+<circle cx="100" cy="100" r="34" fill="#f5cfa8" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M66 96 Q66 66 100 66 Q134 66 134 96 Q124 82 100 84 Q76 82 66 96Z" fill="#222"/>
+<path d="M82 98 Q88 94 94 98 M106 98 Q112 94 118 98" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="88" cy="101" r="2.5" fill="#222"/><circle cx="112" cy="101" r="2.5" fill="#222"/>
+<path d="M86 118 Q100 126 116 114" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M84 112 Q92 108 100 112 Q108 108 116 112" fill="none" stroke="#222" stroke-width="3.5" stroke-linecap="round"/>
+<!-- visière de croupier -->
+<path d="M62 84 Q100 70 138 84 L146 94 Q100 80 54 94 Z" fill="#2a9d8f" fill-opacity=".85" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M66 82 Q100 68 134 82" fill="none" stroke="#222" stroke-width="5"/>
+<!-- chiffres -->
+<text x="22" y="66" font-family="Fredoka" font-weight="700" font-size="20" fill="#d64545">÷</text>
+<text x="28" y="140" font-family="Fredoka" font-weight="700" font-size="18" fill="#2a9d8f">56</text>
+</svg>

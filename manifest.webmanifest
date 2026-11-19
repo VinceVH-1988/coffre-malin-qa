@@ -1,0 +1,17 @@
+{
+  "name": "Coffre Malin",
+  "short_name": "Coffre Malin",
+  "description": "Le coffre des Filous : calculs d'affilée pour ouvrir le coffre.",
+  "lang": "fr",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#1f3a5f",
+  "theme_color": "#1f3a5f",
+  "icons": [
+    {"src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png"},
+    {"src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}

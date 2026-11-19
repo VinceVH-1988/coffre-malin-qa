@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240">
+<rect x="4" y="4" width="192" height="232" rx="22" fill="#efe6fa"/>
+<ellipse cx="100" cy="222" rx="62" ry="8" fill="#000" opacity=".12"/>
+
+<!-- cape -->
+<path d="M50 222 Q60 150 100 132 Q140 150 150 222 Z" fill="#6b3fa0" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M76 222 L86 146 Q100 138 114 146 L124 222 Z" fill="#3d2a5c" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M90 140 L100 156 L110 140" fill="#d64545" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<!-- tête -->
+<circle cx="100" cy="100" r="34" fill="#d9c7ef" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<!-- fausses lunettes-nez-moustache -->
+<circle cx="86" cy="96" r="11" fill="#fff" stroke="#222" stroke-width="4"/>
+<circle cx="114" cy="96" r="11" fill="#fff" stroke="#222" stroke-width="4"/>
+<line x1="97" y1="96" x2="103" y2="96" stroke="#222" stroke-width="4"/>
+<circle cx="88" cy="97" r="3.5" fill="#222"/><circle cx="116" cy="97" r="3.5" fill="#222"/>
+<path d="M76 84 L94 88 M124 84 L106 88" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="100" cy="112" rx="8" ry="10" fill="#f0a0a0" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M78 124 Q90 114 100 122 Q110 114 122 124 Q110 128 100 124 Q90 128 78 124Z" fill="#222"/>
+<path d="M92 132 Q100 136 108 132" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<!-- haut-de-forme -->
+<rect x="74" y="34" width="52" height="38" rx="3" fill="#222"/>
+<rect x="74" y="60" width="52" height="8" fill="#f2b134"/>
+<rect x="62" y="68" width="76" height="8" rx="4" fill="#222"/>
+<!-- masque tenu en main -->
+<path d="M146 150 Q160 140 168 158" fill="none" stroke="#222" stroke-width="13" stroke-linecap="round"/>
+<path d="M146 150 Q160 140 168 158" fill="none" stroke="#6b3fa0" stroke-width="7" stroke-linecap="round"/>
+<line x1="170" y1="160" x2="170" y2="128" stroke="#7a4b2a" stroke-width="4"/>
+<path d="M150 116 Q170 104 190 116 Q188 132 170 130 Q152 132 150 116Z" fill="#f2b134" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<ellipse cx="162" cy="118" rx="5" ry="3.5" fill="#222"/><ellipse cx="178" cy="118" rx="5" ry="3.5" fill="#222"/>
+</svg>

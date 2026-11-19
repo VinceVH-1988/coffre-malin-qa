@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240">
+<rect x="4" y="4" width="192" height="232" rx="22" fill="#fde8e3"/>
+<ellipse cx="100" cy="222" rx="62" ry="8" fill="#000" opacity=".12"/>
+
+<!-- corps -->
+<path d="M62 222 L68 148 Q100 132 132 148 L138 222 Z" fill="#3b6e8f" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M100 140 L100 222" stroke="#222" stroke-width="3"/>
+<path d="M88 142 L100 160 L112 142" fill="#fff" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M95 152 L100 168 L105 152 Z" fill="#d64545" stroke="#222" stroke-width="2"/>
+<circle cx="76" cy="196" r="5" fill="#222"/><circle cx="118" cy="182" r="4" fill="#222"/><circle cx="126" cy="206" r="6" fill="#222"/>
+<!-- tête -->
+<ellipse cx="100" cy="102" rx="30" ry="36" fill="#f5cfa8" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M78 96 Q86 90 94 96" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M106 94 Q114 88 122 94" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="86" cy="100" r="3" fill="#222"/><circle cx="114" cy="98" r="3" fill="#222"/>
+<path d="M78 88 L94 92 M106 90 L122 84" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M100 104 L96 116 L102 116" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M80 124 Q90 118 100 122 Q110 118 120 124" fill="none" stroke="#222" stroke-width="4" stroke-linecap="round"/>
+<path d="M84 124 Q74 122 72 114 M116 124 Q126 122 128 114" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M92 132 Q100 128 110 131" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<!-- béret -->
+<path d="M66 82 Q70 54 104 56 Q136 58 136 78 Q104 70 66 82Z" fill="#d64545" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<line x1="104" y1="56" x2="106" y2="46" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<!-- plume -->
+<path d="M140 168 Q150 150 152 140" fill="none" stroke="#222" stroke-width="13" stroke-linecap="round"/>
+<path d="M140 168 Q150 150 152 140" fill="none" stroke="#3b6e8f" stroke-width="7" stroke-linecap="round"/>
+<circle cx="152" cy="138" r="7" fill="#f5cfa8" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M154 136 Q160 96 186 60 Q194 86 180 110 Q170 128 154 136Z" fill="#fff" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M154 136 Q166 100 186 60" fill="none" stroke="#222" stroke-width="2"/>
+<path d="M162 112 L172 106 M166 100 L178 92 M171 88 L182 80 M160 122 L168 120" stroke="#222" stroke-width="1.6"/>
+<path d="M150 150 L156 134" stroke="#222" stroke-width="4" stroke-linecap="round"/>
+<circle cx="149" cy="153" r="2.5" fill="#1f3a5f"/>
+<!-- feuille falsifiée -->
+<rect x="20" y="150" width="40" height="52" rx="3" fill="#fff" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" transform="rotate(-10 40 176)"/>
+<path d="M26 164 L50 160 M27 174 L52 170 M28 184 L46 181" stroke="#1f3a5f" stroke-width="2.5" transform="rotate(-10 40 176)"/>
+<text x="32" y="196" font-family="Fredoka" font-weight="700" font-size="16" fill="#d64545" transform="rotate(-10 40 176)">✗</text>
+</svg>

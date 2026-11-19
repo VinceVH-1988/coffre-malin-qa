@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240">
+<rect x="4" y="4" width="192" height="232" rx="22" fill="#f5ecd7"/>
+<ellipse cx="100" cy="222" rx="62" ry="8" fill="#000" opacity=".12"/>
+<text x="26" y="50" font-family="Fredoka" font-weight="700" font-size="26" fill="#1f3a5f">+</text>
+<text x="150" y="50" font-family="Fredoka" font-weight="700" font-size="26" fill="#d64545">−</text>
+<text x="24" y="214" font-family="Fredoka" font-weight="700" font-size="26" fill="#2a9d8f">x</text>
+<text x="150" y="222" font-family="Fredoka" font-weight="700" font-size="34" fill="#b08a5a">:</text>
+<g transform="translate(0,38)">
+<rect x="20" y="40" width="160" height="110" rx="12" fill="#1f3a5f" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="34" y="54" width="132" height="82" rx="8" fill="#2f5583" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="100" cy="95" r="26" fill="#f2b134" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="100" cy="95" r="8" fill="#222"/>
+<path d="M100 69 v8 M100 113 v8 M74 95 h8 M118 95 h8" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<rect x="36" y="146" width="20" height="12" fill="#222"/><rect x="144" y="146" width="20" height="12" fill="#222"/>
+<path d="M74 40 v-14 a26 26 0 0 1 52 0 v14" fill="none" stroke="#222" stroke-width="10"/>
+<path d="M74 40 v-14 a26 26 0 0 1 52 0 v14" fill="none" stroke="#c7c7c7" stroke-width="5"/>
+</g>
+</svg>
