@@ -77,10 +77,23 @@ function renderIntrus(){
   bank.querySelectorAll(".pag-mot").forEach(b=>b.addEventListener("click", ()=>submitIntrus(b.textContent)));
   renderPProgress();
 }
+/* Comparaison alphabétique à la française : l'accent ne change pas la place de la lettre. */
+function cleAlpha(m){ return String(m).toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,""); }
+function estRange(mots){
+  for(let i=1;i<mots.length;i++) if(cleAlpha(mots[i-1]) > cleAlpha(mots[i])) return false;
+  return true;
+}
+/* Un mot est un intrus valable si, une fois retiré, le reste de la liste est bien rangé.
+   Déplacer un mot d'une seule place rend deux réponses également justes (« badge, botte,
+   bijou » : botte comme bijou) ; les listes de contenu.json évitent ce cas, et l'app
+   accepte de toute façon toute réponse réellement juste. */
+function intrusValables(mots){
+  return mots.filter((m,i)=> estRange(mots.filter((_,k)=>k!==i)));
+}
 function submitIntrus(mot){
   if(S.locked || !S.pItem) return;
   curStats().tries++;
-  if(mot===S.pItem.intrus){
+  if(intrusValables(S.pMots).indexOf(mot) >= 0){
     handleFaussaireSuccess(null);
   }else{
     const msg = `L'intrus était <b>${S.pItem.intrus}</b>.`;

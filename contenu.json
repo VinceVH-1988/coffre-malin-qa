@@ -1,5 +1,5 @@
 {
- "version": "0.8.0",
+ "version": "0.9.0",
  "date": "2026-11-28",
  "dictee": [
   {
@@ -12476,6 +12476,7 @@
     "bureau",
     "enquête",
     "filou",
+    "indice",
     "loupe"
    ]
   },
@@ -12483,18 +12484,9 @@
    "type": "ordre",
    "niveau": 1,
    "mots": [
+    "badge",
     "cadenas",
     "dossier",
-    "indice",
-    "preuve"
-   ]
-  },
-  {
-   "type": "ordre",
-   "niveau": 1,
-   "mots": [
-    "badge",
-    "mandat",
     "prison",
     "témoin"
    ]
@@ -12506,7 +12498,8 @@
     "carnet",
     "grade",
     "inspecteur",
-    "rapport"
+    "rapport",
+    "suspect"
    ]
   },
   {
@@ -12516,17 +12509,162 @@
     "alerte",
     "coffre",
     "mystère",
-    "suspect"
+    "preuve",
+    "voleur"
    ]
   },
   {
    "type": "ordre",
-   "niveau": 2,
+   "niveau": 1,
    "mots": [
-    "cadenas",
-    "chapeau",
-    "coffre",
-    "crayon"
+    "bagage",
+    "échelle",
+    "fenêtre",
+    "grenier",
+    "lampe"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 1,
+   "mots": [
+    "arbre",
+    "chemin",
+    "forêt",
+    "jardin",
+    "rivière"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 1,
+   "mots": [
+    "avion",
+    "bateau",
+    "camion",
+    "train",
+    "vélo"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 1,
+   "mots": [
+    "cahier",
+    "gomme",
+    "latte",
+    "stylo",
+    "tableau"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 1,
+   "mots": [
+    "canard",
+    "hibou",
+    "lapin",
+    "renard",
+    "souris"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 1,
+   "mots": [
+    "banane",
+    "cerise",
+    "fraise",
+    "orange",
+    "prune"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 1,
+   "mots": [
+    "bonnet",
+    "écharpe",
+    "gant",
+    "pull",
+    "veste"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 1,
+   "mots": [
+    "cuillère",
+    "fourchette",
+    "nappe",
+    "tasse",
+    "verre"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 1,
+   "mots": [
+    "ami",
+    "cousin",
+    "frère",
+    "oncle",
+    "sœur"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 1,
+   "mots": [
+    "colle",
+    "dessin",
+    "feutre",
+    "papier",
+    "règle"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 1,
+   "mots": [
+    "drapeau",
+    "musée",
+    "pays",
+    "roi",
+    "ville"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 1,
+   "mots": [
+    "armoire",
+    "chaise",
+    "divan",
+    "lit",
+    "table"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 1,
+   "mots": [
+    "bruit",
+    "danse",
+    "film",
+    "musique",
+    "théâtre"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 1,
+   "mots": [
+    "chat",
+    "dindon",
+    "mouton",
+    "oie",
+    "vache"
    ]
   },
   {
@@ -12535,6 +12673,7 @@
    "mots": [
     "badge",
     "bijou",
+    "blouse",
     "botte",
     "bureau"
    ]
@@ -12543,10 +12682,22 @@
    "type": "ordre",
    "niveau": 2,
    "mots": [
-    "mandat",
+    "cadenas",
+    "chapeau",
+    "cinéma",
+    "coffre",
+    "crayon"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 2,
+   "mots": [
+    "machine",
     "menteur",
     "mission",
-    "moustache"
+    "moustache",
+    "musée"
    ]
   },
   {
@@ -12556,7 +12707,8 @@
     "papier",
     "pinceau",
     "police",
-    "preuve"
+    "preuve",
+    "puzzle"
    ]
   },
   {
@@ -12566,25 +12718,140 @@
     "sac",
     "secret",
     "sirop",
-    "soupçon"
+    "soupçon",
+    "stylo"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 2,
+   "mots": [
+    "tableau",
+    "tente",
+    "tigre",
+    "torche",
+    "trésor"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 2,
+   "mots": [
+    "facteur",
+    "fenêtre",
+    "filou",
+    "fleur",
+    "forêt"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 2,
+   "mots": [
+    "gant",
+    "gentil",
+    "girafe",
+    "gomme",
+    "grenier"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 2,
+   "mots": [
+    "lampe",
+    "lettre",
+    "limace",
+    "loupe",
+    "lunettes"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 2,
+   "mots": [
+    "radio",
+    "renard",
+    "rideau",
+    "robot",
+    "ruban"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 2,
+   "mots": [
+    "danse",
+    "dessin",
+    "dimanche",
+    "dossier",
+    "drapeau"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 2,
+   "mots": [
+    "valise",
+    "vélo",
+    "village",
+    "voiture",
+    "vrai"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 2,
+   "mots": [
+    "nappe",
+    "neige",
+    "nid",
+    "nombre",
+    "nuage"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 2,
+   "mots": [
+    "échelle",
+    "enquête",
+    "épice",
+    "escalier",
+    "étoile"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 2,
+   "mots": [
+    "alerte",
+    "ami",
+    "ananas",
+    "arbre",
+    "avion"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 2,
+   "mots": [
+    "cabane",
+    "chemin",
+    "ciseaux",
+    "content",
+    "cuisinier"
    ]
   },
   {
    "type": "ordre",
    "niveau": 3,
    "mots": [
-    "poche",
-    "point",
-    "police"
-   ]
-  },
-  {
-   "type": "ordre",
-   "niveau": 3,
-   "mots": [
+    "bagage",
     "balle",
     "banc",
-    "bateau"
+    "bateau",
+    "bazar"
    ]
   },
   {
@@ -12593,65 +12860,610 @@
    "mots": [
     "chapeau",
     "cheval",
-    "chien"
+    "chien",
+    "chocolat",
+    "chuchoter"
    ]
   },
   {
    "type": "ordre",
    "niveau": 3,
    "mots": [
+    "machine",
     "malin",
     "mandat",
-    "marque"
+    "marque",
+    "matin"
    ]
   },
   {
    "type": "ordre",
    "niveau": 3,
    "mots": [
-    "salon",
-    "samedi",
-    "sardine"
+    "poche",
+    "poing",
+    "police",
+    "pompier",
+    "portail"
    ]
   },
   {
-   "type": "intrus",
-   "niveau": 1,
+   "type": "ordre",
+   "niveau": 3,
    "mots": [
-    "badge",
-    "coffre",
-    "mandat",
-    "prison",
-    "alerte"
-   ],
-   "intrus": "alerte",
-   "place": "en premier, avant badge"
+    "sabre",
+    "salon",
+    "samedi",
+    "sardine",
+    "sauter"
+   ]
   },
   {
-   "type": "intrus",
-   "niveau": 1,
+   "type": "ordre",
+   "niveau": 3,
    "mots": [
+    "pagaille",
+    "palais",
+    "panier",
+    "papier",
+    "parc"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 3,
+   "mots": [
+    "cochon",
+    "coffre",
+    "colle",
+    "commode",
+    "corde"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 3,
+   "mots": [
+    "tabouret",
+    "tache",
+    "talon",
+    "tapis",
+    "tartine"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 3,
+   "mots": [
+    "mode",
+    "moineau",
+    "monstre",
+    "morceau",
+    "moustache"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 3,
+   "mots": [
+    "cabane",
     "cadenas",
-    "témoin",
-    "filou",
-    "indice",
-    "loupe"
-   ],
-   "intrus": "témoin",
-   "place": "en dernier, après loupe"
+    "cahier",
+    "calcul",
+    "camion"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 3,
+   "mots": [
+    "grain",
+    "grenier",
+    "griffe",
+    "gros",
+    "grue"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 3,
+   "mots": [
+    "trace",
+    "trésor",
+    "tricot",
+    "trou",
+    "truc"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 3,
+   "mots": [
+    "place",
+    "plein",
+    "plier",
+    "plonger",
+    "pluie"
+   ]
+  },
+  {
+   "type": "ordre",
+   "niveau": 3,
+   "mots": [
+    "velours",
+    "vendredi",
+    "verre",
+    "veste",
+    "vêtement"
+   ]
   },
   {
    "type": "intrus",
    "niveau": 1,
    "mots": [
     "bureau",
-    "dossier",
-    "grade",
-    "rapport",
-    "enquête"
+    "loupe",
+    "enquête",
+    "filou",
+    "indice"
    ],
-   "intrus": "enquête",
-   "place": "entre dossier et grade"
+   "intrus": "loupe",
+   "place": "en dernier, après indice"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "bureau",
+    "enquête",
+    "indice",
+    "loupe",
+    "filou"
+   ],
+   "intrus": "filou",
+   "place": "entre enquête et indice"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "badge",
+    "dossier",
+    "prison",
+    "cadenas",
+    "témoin"
+   ],
+   "intrus": "cadenas",
+   "place": "entre badge et dossier"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "cadenas",
+    "dossier",
+    "badge",
+    "prison",
+    "témoin"
+   ],
+   "intrus": "badge",
+   "place": "en premier, avant cadenas"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "rapport",
+    "carnet",
+    "grade",
+    "inspecteur",
+    "suspect"
+   ],
+   "intrus": "rapport",
+   "place": "entre inspecteur et suspect"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "suspect",
+    "carnet",
+    "grade",
+    "inspecteur",
+    "rapport"
+   ],
+   "intrus": "suspect",
+   "place": "en dernier, après rapport"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "alerte",
+    "coffre",
+    "preuve",
+    "voleur",
+    "mystère"
+   ],
+   "intrus": "mystère",
+   "place": "entre coffre et preuve"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "alerte",
+    "mystère",
+    "preuve",
+    "voleur",
+    "coffre"
+   ],
+   "intrus": "coffre",
+   "place": "entre alerte et mystère"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "bagage",
+    "grenier",
+    "échelle",
+    "fenêtre",
+    "lampe"
+   ],
+   "intrus": "grenier",
+   "place": "entre fenêtre et lampe"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "échelle",
+    "fenêtre",
+    "grenier",
+    "bagage",
+    "lampe"
+   ],
+   "intrus": "bagage",
+   "place": "en premier, avant échelle"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "chemin",
+    "forêt",
+    "arbre",
+    "jardin",
+    "rivière"
+   ],
+   "intrus": "arbre",
+   "place": "en premier, avant chemin"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "arbre",
+    "chemin",
+    "rivière",
+    "forêt",
+    "jardin"
+   ],
+   "intrus": "rivière",
+   "place": "en dernier, après jardin"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "train",
+    "avion",
+    "bateau",
+    "camion",
+    "vélo"
+   ],
+   "intrus": "train",
+   "place": "entre camion et vélo"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "camion",
+    "avion",
+    "bateau",
+    "train",
+    "vélo"
+   ],
+   "intrus": "camion",
+   "place": "entre bateau et train"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "cahier",
+    "latte",
+    "stylo",
+    "gomme",
+    "tableau"
+   ],
+   "intrus": "gomme",
+   "place": "entre cahier et latte"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "cahier",
+    "tableau",
+    "gomme",
+    "latte",
+    "stylo"
+   ],
+   "intrus": "tableau",
+   "place": "en dernier, après stylo"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "hibou",
+    "lapin",
+    "canard",
+    "renard",
+    "souris"
+   ],
+   "intrus": "canard",
+   "place": "en premier, avant hibou"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "canard",
+    "lapin",
+    "renard",
+    "souris",
+    "hibou"
+   ],
+   "intrus": "hibou",
+   "place": "entre canard et lapin"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "banane",
+    "orange",
+    "cerise",
+    "fraise",
+    "prune"
+   ],
+   "intrus": "orange",
+   "place": "entre fraise et prune"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "banane",
+    "fraise",
+    "orange",
+    "cerise",
+    "prune"
+   ],
+   "intrus": "cerise",
+   "place": "entre banane et fraise"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "bonnet",
+    "écharpe",
+    "pull",
+    "veste",
+    "gant"
+   ],
+   "intrus": "gant",
+   "place": "entre écharpe et pull"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "écharpe",
+    "gant",
+    "bonnet",
+    "pull",
+    "veste"
+   ],
+   "intrus": "bonnet",
+   "place": "en premier, avant écharpe"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "verre",
+    "cuillère",
+    "fourchette",
+    "nappe",
+    "tasse"
+   ],
+   "intrus": "verre",
+   "place": "en dernier, après tasse"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "nappe",
+    "cuillère",
+    "fourchette",
+    "tasse",
+    "verre"
+   ],
+   "intrus": "nappe",
+   "place": "entre fourchette et tasse"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "ami",
+    "oncle",
+    "cousin",
+    "frère",
+    "sœur"
+   ],
+   "intrus": "oncle",
+   "place": "entre frère et sœur"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "ami",
+    "sœur",
+    "cousin",
+    "frère",
+    "oncle"
+   ],
+   "intrus": "sœur",
+   "place": "en dernier, après oncle"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "colle",
+    "feutre",
+    "papier",
+    "dessin",
+    "règle"
+   ],
+   "intrus": "dessin",
+   "place": "entre colle et feutre"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "dessin",
+    "feutre",
+    "papier",
+    "colle",
+    "règle"
+   ],
+   "intrus": "colle",
+   "place": "en premier, avant dessin"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "drapeau",
+    "musée",
+    "roi",
+    "ville",
+    "pays"
+   ],
+   "intrus": "pays",
+   "place": "entre musée et roi"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "drapeau",
+    "pays",
+    "roi",
+    "ville",
+    "musée"
+   ],
+   "intrus": "musée",
+   "place": "entre drapeau et pays"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "armoire",
+    "chaise",
+    "table",
+    "divan",
+    "lit"
+   ],
+   "intrus": "table",
+   "place": "en dernier, après lit"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "chaise",
+    "divan",
+    "armoire",
+    "lit",
+    "table"
+   ],
+   "intrus": "armoire",
+   "place": "en premier, avant chaise"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "musique",
+    "bruit",
+    "danse",
+    "film",
+    "théâtre"
+   ],
+   "intrus": "musique",
+   "place": "entre film et théâtre"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "film",
+    "bruit",
+    "danse",
+    "musique",
+    "théâtre"
+   ],
+   "intrus": "film",
+   "place": "entre danse et musique"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "chat",
+    "oie",
+    "dindon",
+    "mouton",
+    "vache"
+   ],
+   "intrus": "oie",
+   "place": "entre mouton et vache"
+  },
+  {
+   "type": "intrus",
+   "niveau": 1,
+   "mots": [
+    "dindon",
+    "mouton",
+    "oie",
+    "chat",
+    "vache"
+   ],
+   "intrus": "chat",
+   "place": "en premier, avant dindon"
   },
   {
    "type": "intrus",
@@ -12660,67 +13472,206 @@
     "badge",
     "botte",
     "bijou",
+    "blouse",
     "bureau"
    ],
-   "intrus": "bijou",
-   "place": "entre badge et botte"
+   "intrus": "botte",
+   "place": "entre blouse et bureau"
   },
   {
    "type": "intrus",
    "niveau": 2,
    "mots": [
+    "badge",
+    "bijou",
+    "botte",
+    "bureau",
+    "blouse"
+   ],
+   "intrus": "blouse",
+   "place": "entre bijou et botte"
+  },
+  {
+   "type": "intrus",
+   "niveau": 2,
+   "mots": [
+    "cadenas",
+    "cinéma",
+    "coffre",
+    "chapeau",
+    "crayon"
+   ],
+   "intrus": "chapeau",
+   "place": "entre cadenas et cinéma"
+  },
+  {
+   "type": "intrus",
+   "niveau": 2,
+   "mots": [
+    "cadenas",
+    "chapeau",
+    "crayon",
+    "cinéma",
+    "coffre"
+   ],
+   "intrus": "crayon",
+   "place": "en dernier, après coffre"
+  },
+  {
+   "type": "intrus",
+   "niveau": 2,
+   "mots": [
+    "machine",
+    "musée",
     "menteur",
-    "mandat",
     "mission",
     "moustache"
    ],
-   "intrus": "mandat",
-   "place": "en premier, avant menteur"
+   "intrus": "musée",
+   "place": "en dernier, après moustache"
   },
   {
    "type": "intrus",
    "niveau": 2,
    "mots": [
+    "machine",
+    "mission",
+    "moustache",
+    "menteur",
+    "musée"
+   ],
+   "intrus": "menteur",
+   "place": "entre machine et mission"
+  },
+  {
+   "type": "intrus",
+   "niveau": 2,
+   "mots": [
+    "police",
     "papier",
     "pinceau",
     "preuve",
-    "police"
+    "puzzle"
    ],
    "intrus": "police",
    "place": "entre pinceau et preuve"
   },
   {
    "type": "intrus",
-   "niveau": 3,
+   "niveau": 2,
    "mots": [
-    "banc",
-    "balle",
-    "bateau"
+    "preuve",
+    "papier",
+    "pinceau",
+    "police",
+    "puzzle"
    ],
-   "intrus": "balle",
-   "place": "en premier, avant banc"
+   "intrus": "preuve",
+   "place": "entre police et puzzle"
   },
   {
    "type": "intrus",
-   "niveau": 3,
+   "niveau": 2,
    "mots": [
-    "chapeau",
-    "chien",
-    "cheval"
+    "secret",
+    "sirop",
+    "soupçon",
+    "stylo",
+    "sac"
    ],
-   "intrus": "cheval",
-   "place": "entre chapeau et chien"
+   "intrus": "sac",
+   "place": "en premier, avant secret"
   },
   {
    "type": "intrus",
-   "niveau": 3,
+   "niveau": 2,
    "mots": [
-    "mandat",
-    "malin",
-    "marque"
+    "sac",
+    "sirop",
+    "soupçon",
+    "stylo",
+    "secret"
    ],
-   "intrus": "malin",
-   "place": "en premier, avant mandat"
+   "intrus": "secret",
+   "place": "entre sac et sirop"
+  },
+  {
+   "type": "intrus",
+   "niveau": 2,
+   "mots": [
+    "tente",
+    "tigre",
+    "tableau",
+    "torche",
+    "trésor"
+   ],
+   "intrus": "tableau",
+   "place": "en premier, avant tente"
+  },
+  {
+   "type": "intrus",
+   "niveau": 2,
+   "mots": [
+    "tableau",
+    "tente",
+    "trésor",
+    "tigre",
+    "torche"
+   ],
+   "intrus": "trésor",
+   "place": "en dernier, après torche"
+  },
+  {
+   "type": "intrus",
+   "niveau": 2,
+   "mots": [
+    "facteur",
+    "fleur",
+    "fenêtre",
+    "filou",
+    "forêt"
+   ],
+   "intrus": "fleur",
+   "place": "entre filou et forêt"
+  },
+  {
+   "type": "intrus",
+   "niveau": 2,
+   "mots": [
+    "filou",
+    "facteur",
+    "fenêtre",
+    "fleur",
+    "forêt"
+   ],
+   "intrus": "filou",
+   "place": "entre fenêtre et fleur"
+  },
+  {
+   "type": "intrus",
+   "niveau": 2,
+   "mots": [
+    "gentil",
+    "girafe",
+    "gomme",
+    "gant",
+    "grenier"
+   ],
+   "intrus": "gant",
+   "place": "en premier, avant gentil"
+  },
+  {
+   "type": "intrus",
+   "niveau": 2,
+   "mots": [
+    "lampe",
+    "limace",
+    "loupe",
+    "lettre",
+    "lunettes"
+   ],
+   "intrus": "lettre",
+   "place": "entre lampe et limace"
   }
  ]
 }
