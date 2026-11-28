@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 240">
+<rect x="4" y="4" width="192" height="232" rx="22" fill="#fde7ef"/>
+<ellipse cx="100" cy="222" rx="62" ry="8" fill="#000" opacity=".12"/>
+
+<!-- robe corail -->
+<path d="M58 222 L70 150 Q100 134 130 150 L142 222 Z" fill="#f07a5f" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M88 144 L100 160 L112 144" fill="#fff" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M72 196 Q100 188 128 196" fill="none" stroke="#c4543c" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<!-- bras qui brasse les pages -->
+<path d="M130 166 Q152 162 160 142" fill="none" stroke="#222" stroke-width="13" stroke-linecap="round"/>
+<path d="M130 166 Q152 162 160 142" fill="none" stroke="#f07a5f" stroke-width="7" stroke-linecap="round"/>
+<circle cx="162" cy="138" r="8" fill="#f5cfa8" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<!-- tête -->
+<circle cx="100" cy="102" r="34" fill="#f5cfa8" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<!-- cheveux violets en désordre -->
+<path d="M64 98 Q58 70 74 58 Q70 44 86 48 Q92 34 104 44 Q118 32 124 48 Q142 44 138 60 Q154 70 136 98 Q132 76 100 80 Q72 76 64 98Z" fill="#8e5bc4" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M70 62 L58 48 M128 44 L138 30 M98 40 L96 26" fill="none" stroke="#8e5bc4" stroke-width="6" stroke-linecap="round"/>
+<path d="M70 62 L58 48 M128 44 L138 30 M98 40 L96 26" fill="none" stroke="#222" stroke-width="2.5" stroke-linecap="round"/>
+<!-- visage espiègle -->
+<path d="M80 96 Q86 90 92 96 M108 96 Q114 90 120 96" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<circle cx="86" cy="101" r="2.5" fill="#222"/><circle cx="114" cy="101" r="2.5" fill="#222"/>
+<path d="M84 116 Q100 130 118 114" fill="none" stroke="#222" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/>
+<!-- lettres qui volent, dans le désordre -->
+<g font-family="Fredoka" font-weight="700" font-size="20" fill="#1f3a5f" stroke="#222" stroke-width="1">
+  <text x="22" y="54" transform="rotate(-18 22 54)">Z</text>
+  <text x="26" y="104" transform="rotate(12 26 104)">A</text>
+  <text x="158" y="76" transform="rotate(16 158 76)">M</text>
+  <text x="168" y="112" transform="rotate(-14 168 112)">B</text>
+</g>
+<path d="M44 66 Q54 76 44 88" fill="none" stroke="#8e5bc4" stroke-width="3" stroke-linecap="round"/>
+<path d="M156 94 Q148 102 158 108" fill="none" stroke="#8e5bc4" stroke-width="3" stroke-linecap="round"/>
+</svg>

@@ -38,6 +38,7 @@
         <div class="word-note" id="word-note" aria-live="polite"></div>
         <div class="word-zones cursive" id="word-zones" style="display:none"></div>
         <div class="sentence-zone cursive" id="sentence-zone" style="display:none"></div>
+        <div class="pagaille-zone" id="pagaille-zone" style="display:none"></div>
         <div class="progress" id="progress"></div>
       </div>
     </div>
@@ -61,6 +62,11 @@
 
   <div class="verbe-pad" id="verbe-pad">
     <button type="button" class="btn teal" id="verbe-validate">Valider</button>
+  </div>
+
+  <div class="pagaille-pad" id="pagaille-pad">
+    <div class="pag-bank" id="pagaille-mots"></div>
+    <button type="button" class="btn teal" id="pagaille-validate">Valider</button>
   </div>
 
   <div class="habille-pad" id="habille-pad">
@@ -295,6 +301,23 @@
       <div class="sub">Séries actives pour ce profil</div>
       <div class="chips" data-list="deguiseur:infinitif-series"></div>
     </div>
+    <div class="group" id="g-deguiseur-habiller" data-tab="deguiseur:habiller">
+      <div class="group-head"><h3>Habiller les verbes</h3></div>
+      <div class="sub">Séries actives pour ce profil</div>
+      <div class="chips" data-list="deguiseur:habiller-series"></div>
+      <div class="group-head" style="margin-top:10px"><h3 style="font-size:1rem">Radical déjà écrit</h3><label class="switch"><input type="checkbox" id="s-radical-preecrit" aria-label="Radical déjà écrit"><span></span></label></div>
+      <div class="sub">Le début du verbe est posé par l'app : l'enfant n'écrit que la terminaison. Si désactivé, il écrit le verbe habillé en entier.</div>
+    </div>
+    <div class="group" id="g-pagaille-ordre" data-tab="pagaille:ordre">
+      <div class="group-head"><h3>Le grand livre en désordre</h3></div>
+      <div class="sub">Jusqu'à quelle lettre il faut comparer pour ranger</div>
+      <div class="chips" data-list="pagaille:ordre-niveaux"></div>
+    </div>
+    <div class="group" id="g-pagaille-intrus" data-tab="pagaille:intrus">
+      <div class="group-head"><h3>Trouve l'intrus</h3></div>
+      <div class="sub">Jusqu'à quelle lettre il faut comparer pour ranger</div>
+      <div class="chips" data-list="pagaille:intrus-niveaux"></div>
+    </div>
 
     <div class="group" data-scope="child">
       <div class="group-head"><h3>Records</h3></div>
@@ -317,6 +340,7 @@
 <script src="faussaire.js"></script>
 <script src="deguiseur.js"></script>
 <script src="menteur.js"></script>
+<script src="pagaille.js"></script>
 <script src="ui.js"></script>
 <script src="boot.js"></script>
 </body>

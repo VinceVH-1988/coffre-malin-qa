@@ -48,6 +48,8 @@ function generate(){
   if(kind==="dictee") return generateWord();
   if(kind==="trou"||kind==="correction") return generateItem();
   if(kind==="verbe"||kind==="habille"||kind==="infinitif") return generateDItem();
+  if(kind==="habiller") return generateCItem();
+  if(kind==="ordre"||kind==="intrus") return generatePItem();
   let q, key, guard=0;
   do{
     const op = pick(activeOpsForFilou(S.filou));

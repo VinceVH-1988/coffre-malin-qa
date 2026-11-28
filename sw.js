@@ -1,8 +1,8 @@
 // Coffre Malin, service worker.
 // Réseau d'abord : si l'iPhone a du réseau, il prend toujours la dernière version publiée.
 // Sans réseau, il utilise la copie gardée en mémoire.
-const CACHE = "coffre-malin-v4-illustrations";
-const FILES = ["./", "index.html", "styles.css", "data.js", "core.js", "calc.js", "faussaire.js", "deguiseur.js", "menteur.js", "ui.js", "boot.js", "fonts/fredoka.woff2", "manifest.webmanifest", "contenu.json", "icons/apple-touch-icon.png", "icons/icon-192.png", "icons/icon-512.png", "illustrations/retenues.svg", "illustrations/tables.svg", "illustrations/deguiseur.svg", "illustrations/faussaire_mot.svg", "illustrations/menteur.svg", "illustrations/mix.svg"];
+const CACHE = "coffre-malin-v5-pagaille";
+const FILES = ["./", "index.html", "styles.css", "data.js", "core.js", "calc.js", "faussaire.js", "deguiseur.js", "menteur.js", "pagaille.js", "ui.js", "boot.js", "fonts/fredoka.woff2", "manifest.webmanifest", "contenu.json", "icons/apple-touch-icon.png", "icons/icon-192.png", "icons/icon-512.png", "illustrations/retenues.svg", "illustrations/tables.svg", "illustrations/deguiseur.svg", "illustrations/faussaire_mot.svg", "illustrations/menteur.svg", "illustrations/mix.svg", "illustrations/pagaille.svg"];
 
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(FILES)));

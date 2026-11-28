@@ -3,18 +3,22 @@ const S = {
   cfgs:{
     retenues:clone(DEFAULT_RETENUES), tables:clone(DEFAULT_TABLES), mix:clone(DEFAULT_MIX),
     faussaire:{dictee:clone(DEFAULT_FAUSSAIRE_ACTIVITY), trou:clone(DEFAULT_FAUSSAIRE_ACTIVITY), correction:clone(DEFAULT_FAUSSAIRE_ACTIVITY)},
-    deguiseur:{verbe:clone(DEFAULT_DEGUISEUR_ACTIVITY), habille:clone(DEFAULT_DEGUISEUR_ACTIVITY), infinitif:clone(DEFAULT_DEGUISEUR_ACTIVITY)},
+    deguiseur:{verbe:clone(DEFAULT_DEGUISEUR_ACTIVITY), habille:clone(DEFAULT_DEGUISEUR_ACTIVITY), infinitif:clone(DEFAULT_DEGUISEUR_ACTIVITY), habiller:clone(DEFAULT_DEGUISEUR_HABILLER)},
+    pagaille:{ordre:clone(DEFAULT_PAGAILLE_ACTIVITY), intrus:clone(DEFAULT_PAGAILLE_ACTIVITY)},
     menteur:clone(DEFAULT_MENTEUR_CFG)
   },
   stats:{tries:0,errors:0,best:0,opens:0}, records:{}, mode:"coffre", recKey:"", newRec:false, streak:0,
   q:null, word:null, lastWord:"", spoken:false, item:null, lastItem:"", picked:null, itemIsFaux:false,
   dItem:null, lastDItem:"", selectedTokens:[], verbeStep:"find",
+  cItem:null, lastCItem:"",
+  pItem:null, lastPItem:"", pOrdre:[], pMots:[],
   mItem:null, lastMenteur:"", mAnswered:false,
   input:"", last:"", locked:true, filou:"retenues", activite:"dictee"
 };
 function curCfg(){
   if(S.filou==="faussaire") return (S.cfgs.faussaire && S.cfgs.faussaire[S.activite]) || S.cfgs.faussaire.dictee;
   if(S.filou==="deguiseur") return (S.cfgs.deguiseur && S.cfgs.deguiseur[S.activite]) || S.cfgs.deguiseur.verbe;
+  if(S.filou==="pagaille") return (S.cfgs.pagaille && S.cfgs.pagaille[S.activite]) || S.cfgs.pagaille.ordre;
   return S.cfgs[S.filou] || S.cfgs.retenues;
 }
 const $ = id => document.getElementById(id);
@@ -107,7 +111,7 @@ async function migrateIfNeeded(){
   return id;
 }
 
-const KNOWN_FILOUS_FOR_KEYS = ["retenues","tables","mix","faussaire","deguiseur","menteur"];
+const KNOWN_FILOUS_FOR_KEYS = ["retenues","tables","mix","faussaire","deguiseur","pagaille","menteur"];
 const isScopedRecordKey = k => KNOWN_FILOUS_FOR_KEYS.includes((k.startsWith("montre:")?k.slice(7):k).split(":")[0]);
 /* Charge le paquet complet de données d'UN profil (cfgs, stats, records, filous actifs, minuteur), sans toucher
    à l'état S.* courant : sert à la fois à charger le profil actif (loadActiveProfileData) et à afficher/éditer,
@@ -125,7 +129,12 @@ async function loadProfileBundle(id){
     deguiseur: {
       verbe: mergeCfgFor("deguiseur_verbe", await store.get(pk(CFG_STORE_KEY.deguiseur_verbe,id))),
       habille: mergeCfgFor("deguiseur_habille", await store.get(pk(CFG_STORE_KEY.deguiseur_habille,id))),
-      infinitif: mergeCfgFor("deguiseur_infinitif", await store.get(pk(CFG_STORE_KEY.deguiseur_infinitif,id)))
+      infinitif: mergeCfgFor("deguiseur_infinitif", await store.get(pk(CFG_STORE_KEY.deguiseur_infinitif,id))),
+      habiller: mergeCfgFor("deguiseur_habiller", await store.get(pk(CFG_STORE_KEY.deguiseur_habiller,id)))
+    },
+    pagaille: {
+      ordre: mergeCfgFor("pagaille_ordre", await store.get(pk(CFG_STORE_KEY.pagaille_ordre,id))),
+      intrus: mergeCfgFor("pagaille_intrus", await store.get(pk(CFG_STORE_KEY.pagaille_intrus,id)))
     },
     menteur: mergeCfgFor("menteur", await store.get(pk(CFG_STORE_KEY.menteur,id)))
   };
@@ -133,7 +142,7 @@ async function loadProfileBundle(id){
   const stats = (st && st.tries===undefined) ? st : {}; // ancien format (un seul bloc global) : on repart à zéro, détaillé par épreuve
   const recs = (await store.get(pk("coffre-records",id))) || {};
   const records = Object.keys(recs).every(isScopedRecordKey) ? recs : {}; // anciennes clés non préfixées par filou : on repart à zéro
-  const filousActifs = (await store.get(pk("brigade-filous",id))) || {retenues:true, tables:true, faussaire:true, deguiseur:true, menteur:true};
+  const filousActifs = (await store.get(pk("brigade-filous",id))) || {retenues:true, tables:true, faussaire:true, deguiseur:true, pagaille:true, menteur:true};
   const minuteur = mergeMinuteurCfg(await store.get(pk("coffre-minuteur",id)));
   return {cfgs, stats, records, filousActifs, minuteur};
 }
@@ -217,7 +226,7 @@ function hideAllScreens(){
 }
 
 /* ---------- écran de choix d'épreuve (Faussaire, Déguiseur, ...) ---------- */
-const ACTIVITY_ICON = {faussaire:"faussaire_mot", deguiseur:"deguiseur"};
+const ACTIVITY_ICON = {faussaire:"faussaire_mot", deguiseur:"deguiseur", pagaille:"pagaille"};
 function showActivites(){
   hideAllScreens();
   const f = FILOUS.find(x=>x.id===S.filou);

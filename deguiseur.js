@@ -44,7 +44,7 @@ function renderVerbe(){
     $("verbe-pad").classList.remove("show");
     $("dictee-pad").classList.add("show");
     $("sentence-zone").innerHTML = sentenceTokensHTML(it, it.verbeIdx);
-    const ans=$("answer"); ans.style.display="flex"; ans.textContent=S.input; ans.classList.toggle("empty",!S.input);
+    const ans=$("answer"); ans.style.display="flex"; ans.textContent=S.input; ans.classList.toggle("empty",!S.input); fitAnswer();
     renderDProgress();
     return;
   }
@@ -108,7 +108,7 @@ function renderInfinitif(){
   if(!S.dItem) return;
   const it = S.dItem;
   $("sentence-zone").innerHTML = sentenceTokensHTML(it, it.verbeIdx);
-  const ans=$("answer"); ans.textContent=S.input; ans.classList.toggle("empty",!S.input);
+  const ans=$("answer"); ans.textContent=S.input; ans.classList.toggle("empty",!S.input); fitAnswer();
   renderDProgress();
 }
 function submitInfinitif(){
@@ -120,6 +120,56 @@ function submitInfinitif(){
   }else{
     const msg = `Tu as écrit <b>${S.input}</b>. La bonne réponse était <b>${it.infinitif}</b>.`;
     const steps = `L'infinitif : <b>${it.infinitif}</b><span class="note">Petit truc : « C'est l'action de ${it.infinitif}… » ou « Il faut ${it.infinitif}… ».</span>`;
+    handleFaussaireError(msg, steps);
+  }
+}
+
+/* ---------- Le Déguiseur : habiller les verbes (présent, terminaisons de la fiche F8) ----------
+   L'app donne le verbe en pyjama et un pronom ; l'enfant écrit le verbe habillé.
+   Avec « radical pré-écrit », le début du verbe est déjà posé : il ne reste que la terminaison. */
+function poolHabiller(){
+  const active = new Set((curCfg().series||[]).map(Number));
+  return (CONTENU.conjugaison||[]).filter(it=>active.has(Number(it.serie)));
+}
+function pickCItem(){
+  const pool = poolHabiller();
+  if(!pool.length) return null;
+  let it, guard=0;
+  const cle = x => x.pronom+"|"+x.infinitif;
+  do{ it = pick(pool); } while(cle(it)===S.lastCItem && guard++<20);
+  S.lastCItem = cle(it);
+  return it;
+}
+function generateCItem(){ S.cItem = pickCItem(); S.input = ""; render(); }
+/* « j' » se colle au verbe (j'aime), les autres pronoms en sont séparés par une espace. */
+const colleAuVerbe = pronom => String(pronom||"").endsWith("'");
+function formeAttendue(it){ return it.pronom + (colleAuVerbe(it.pronom) ? "" : " ") + it.forme; }
+function renderHabiller(){
+  const it = S.cItem;
+  const zone = $("sentence-zone");
+  if(!it){ zone.innerHTML = '<span class="pag-vide">Aucune série réglée pour ce profil.</span>'; return; }
+  zone.innerHTML = `<span class="conj-pronom">${it.pronom}</span><span class="conj-fleche">+</span><span class="conj-inf cursive">${it.infinitif}</span>`;
+  const radical = curCfg().radicalPreEcrit !== false ? it.radical : "";
+  const ans=$("answer");
+  const ecrit = radical + S.input;
+  ans.innerHTML = `<span class="conj-dit">${it.pronom}${colleAuVerbe(it.pronom)?"":" "}</span>${radical ? `<span class="conj-radical">${radical}</span>` : ""}${S.input}`;
+  ans.classList.toggle("empty", !ecrit);
+  fitAnswer();
+  renderDProgress();
+}
+function submitHabiller(){
+  if(S.locked || !S.input || !S.cItem) return;
+  const it = S.cItem;
+  curStats().tries++;
+  const radical = curCfg().radicalPreEcrit !== false ? it.radical : "";
+  const ecrit = radical + S.input;
+  const attendu = formeAttendue(it);
+  const ok = normWord(ecrit)===normWord(it.forme) || normWord(ecrit)===normWord(attendu);
+  if(ok){
+    handleFaussaireSuccess(null);
+  }else{
+    const msg = `Tu as écrit <b>${ecrit}</b>. Le verbe habillé était <b>${attendu}</b>.`;
+    const steps = `<b>${attendu}</b><span class="note">Au présent, les terminaisons sont e, es, e, ons, ez, ent. Ici, c'est <b>${it.terminaison}</b>.</span>`;
     handleFaussaireError(msg, steps);
   }
 }

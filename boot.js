@@ -10,7 +10,7 @@ async function loadContenu(){
 }
 
 /* ---------- illustrations : chaque filou/méchant a son propre fichier SVG ---------- */
-const ILLUSTRATION_FILES = ["retenues","tables","deguiseur","faussaire_mot","menteur","mix"];
+const ILLUSTRATION_FILES = ["retenues","tables","deguiseur","faussaire_mot","menteur","mix","pagaille"];
 async function loadIllustrations(){
   const next = {};
   await Promise.all(ILLUSTRATION_FILES.map(async key=>{

@@ -32,7 +32,7 @@ function speakText(text){
 }
 function renderDictee(){
   if(!S.word) return;
-  const ans=$("answer"); ans.textContent=S.input; ans.classList.toggle("empty",!S.input);
+  const ans=$("answer"); ans.textContent=S.input; ans.classList.toggle("empty",!S.input); fitAnswer();
   $("word-listen").textContent = S.spoken ? "Réécouter" : "Écouter";
   const p=$("progress");
   if(S.mode==="infini"){ p.textContent = S.newRec ? `Série : ${S.streak} · Nouveau record !` : `Série : ${S.streak} · Record : ${S.records[S.recKey]||0}`; p.classList.toggle("rec",S.newRec); }

@@ -57,6 +57,10 @@ h1{font-size:clamp(1rem,3dvh,1.35rem);font-weight:700;margin:0;text-align:center
 .answer{margin:3.5cqh auto 0;min-width:2.6em;width:max-content;padding:0 .3em;height:1.25em;font-size:11.5cqw;font-weight:700;
   border:4px solid var(--navy);border-radius:12px;background:#fff;display:flex;align-items:center;justify-content:center;color:var(--navy)}
 .answer.empty::after{content:"?";color:#b9c5d2}
+/* les réponses écrites (dictée, infinitif, verbe habillé) sont bien plus longues qu'un résultat
+   de calcul : on réduit la taille pour qu'elles tiennent toujours dans la plaque du coffre */
+.answer.long{font-size:7.5cqw}
+.answer.xlong{font-size:5.8cqw}
 .progress{margin-top:3cqh;font-size:max(11px,4.2cqw);color:#5b6878}
 
 .pad{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(6px,1.2dvh,10px);width:100%;flex:none}
@@ -158,7 +162,8 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:4px solid 
   .vault-wrap{grid-area:vault;min-height:0;height:clamp(120px,32dvh,220px);padding:0;align-self:center;justify-self:center;width:100%}
   .pad{grid-area:pad;align-self:center;justify-self:center;width:100%;max-width:280px;gap:4px}
   .pad button{padding:4px 0;font-size:clamp(1rem,3dvh,1.4rem)}
-  .dictee-pad,.choice-pad,.verbe-pad,.habille-pad{grid-area:pad;align-self:center;justify-self:center;width:100%;max-width:340px}
+  .dictee-pad,.choice-pad,.verbe-pad,.habille-pad,.pagaille-pad{grid-area:pad;align-self:center;justify-self:center;width:100%;max-width:340px}
+  .pag-bank .pag-mot{font-size:.95rem;padding:6px 12px}
   .dictee-pad .kb{gap:3px;margin:2px 0}
   .dictee-pad .kbd{padding:4px 0;font-size:.8rem}
   .dictee-pad #word-validate{padding:6px 16px;font-size:1rem}
@@ -302,6 +307,32 @@ button:focus-visible,input:focus-visible,select:focus-visible{outline:4px solid 
 .hp-btn{font:inherit;font-size:1.05rem;font-weight:700;padding:12px 20px;border-radius:14px;border:3px solid var(--ink);
   background:var(--key);color:var(--key-ink);box-shadow:0 4px 0 var(--key-shadow);cursor:pointer}
 .hp-btn:active{transform:translateY(3px);box-shadow:0 1px 0 var(--key-shadow)}
+
+/* ---------- Madame Pagaille : l'ordre alphabétique ---------- */
+.pagaille-zone{flex-wrap:wrap;justify-content:center;align-items:center;align-content:center;gap:4px;width:100%;max-width:100%;padding:2px 4px;
+  font-size:min(.85rem,4.6cqw);line-height:1.05;color:var(--panel-ink)}
+.pag-vide{font-size:.95rem;opacity:.75;text-align:center;width:100%}
+.pag-consigne{font-size:max(12px,4.4cqw);line-height:1.3;text-align:center;width:100%;padding:2px 6px}
+.pag-mot{font:inherit;font-family:var(--cursive);font-size:inherit;line-height:1.05;color:var(--panel-ink);background:var(--key);
+  border:2px solid var(--ink);border-radius:999px;padding:2px 9px;cursor:pointer;box-shadow:0 3px 0 var(--key-shadow)}
+.pag-mot:active{transform:translateY(2px);box-shadow:0 1px 0 var(--key-shadow)}
+.pag-slot{font:inherit;font-family:var(--cursive);font-size:inherit;line-height:1.05;color:#fff;background:var(--teal);
+  border:2px solid var(--ink);border-radius:999px;padding:1px 8px 1px 1px;cursor:pointer;display:inline-flex;align-items:center;gap:4px}
+.pag-slot:active{transform:translateY(2px)}
+.pag-num{font-family:"Fredoka",system-ui,sans-serif;font-size:.68em;font-weight:700;line-height:1;background:var(--panel);color:var(--panel-ink);
+  border-radius:999px;min-width:1.5em;height:1.5em;display:inline-flex;align-items:center;justify-content:center;flex:none}
+.pagaille-pad{display:none;flex-direction:column;gap:8px;width:100%;flex:none;align-items:center}
+.pagaille-pad.show{display:flex}
+.pag-bank{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;width:100%}
+.pag-bank .pag-mot{font-size:1.05rem;padding:8px 16px}
+#pagaille-validate:disabled{opacity:.45;box-shadow:none;transform:none;cursor:default}
+
+/* ---------- Le Déguiseur : habiller les verbes ---------- */
+.conj-pronom{font-weight:700;color:var(--teal)}
+.conj-fleche{opacity:.55;padding:0 .35em;font-weight:700}
+.conj-inf{font-family:var(--cursive)}
+.conj-dit{opacity:.75;padding-right:.1em}
+.conj-radical{opacity:.75}
 
 /* ---------- Le Menteur ---------- */
 .menteur-screen{position:fixed;inset:0;z-index:3;background:var(--bg);display:none;flex-direction:column;align-items:center;

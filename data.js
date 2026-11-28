@@ -4,7 +4,8 @@ const VILLAIN = {
   add:{name:"Le Faussaire des Retenues", art:"retenues"}, sub:{name:"Le Faussaire des Retenues", art:"retenues"},
   mul:{name:"Le Tricheur des Tables", art:"tables"}, div:{name:"Le Tricheur des Tables", art:"tables"},
   faussaire:{name:"Le Faussaire", art:"faussaire_mot"},
-  deguiseur:{name:"Le Déguiseur", art:"deguiseur"}
+  deguiseur:{name:"Le Déguiseur", art:"deguiseur"},
+  pagaille:{name:"Madame Pagaille", art:"pagaille"}
 };
 const SYM = {add:"+", sub:"−", mul:"x", div:":"};
 const FORMS = {
@@ -25,20 +26,30 @@ const DEFAULT_TABLES = {
 const DEFAULT_MIX = { code:"5472", target:6, reward:"feu" };
 const DEFAULT_FAUSSAIRE_ACTIVITY = { code:"5472", target:6, reward:"feu", series:[1,2,3,4,5,6,7,8] };
 const DEFAULT_DEGUISEUR_ACTIVITY = { code:"5472", target:6, reward:"feu", series:[1,2,3,4,5], fusionInfinitif:true };
+/* Le Déguiseur, épreuve « Habiller les verbes » : radicalPreEcrit laisse le début du verbe déjà écrit,
+   pour que l'enfant n'ait plus qu'à poser la terminaison (e, es, e, ons, ez, ent : fiche F8 de l'école). */
+const DEFAULT_DEGUISEUR_HABILLER = { code:"5472", target:6, reward:"feu", series:[1], radicalPreEcrit:true };
+/* Madame Pagaille : « series » contient ici les niveaux de difficulté, c'est-à-dire la lettre
+   qu'il faut comparer pour ranger les mots (1 = 1re lettre, 2 = 2e lettre, 3 = 3e lettre). */
+const DEFAULT_PAGAILLE_ACTIVITY = { code:"5472", target:6, reward:"feu", series:[1,2] };
 const DEFAULT_MENTEUR_CFG = { themes:["temps"] };
 /* mode: "none" (par défaut, pas de limite), "global" (une limite commune à tous les filous du profil)
    ou "perFilou" (une limite propre à chaque filou). bonus : minutes offertes à chaque déblocage parent. */
-const DEFAULT_MINUTEUR = { mode:"none", global:20, perFilou:{retenues:20, tables:20, mix:20, faussaire:20, deguiseur:20, menteur:20}, bonus:15 };
+const DEFAULT_MINUTEUR = { mode:"none", global:20, perFilou:{retenues:20, tables:20, mix:20, faussaire:20, deguiseur:20, pagaille:20, menteur:20}, bonus:15 };
 const DEFAULTS_BY_FILOU = {
   retenues:DEFAULT_RETENUES, tables:DEFAULT_TABLES, mix:DEFAULT_MIX,
   faussaire_dictee:DEFAULT_FAUSSAIRE_ACTIVITY, faussaire_trou:DEFAULT_FAUSSAIRE_ACTIVITY, faussaire_correction:DEFAULT_FAUSSAIRE_ACTIVITY,
   deguiseur_verbe:DEFAULT_DEGUISEUR_ACTIVITY, deguiseur_habille:DEFAULT_DEGUISEUR_ACTIVITY, deguiseur_infinitif:DEFAULT_DEGUISEUR_ACTIVITY,
+  deguiseur_habiller:DEFAULT_DEGUISEUR_HABILLER,
+  pagaille_ordre:DEFAULT_PAGAILLE_ACTIVITY, pagaille_intrus:DEFAULT_PAGAILLE_ACTIVITY,
   menteur:DEFAULT_MENTEUR_CFG
 };
 const CFG_STORE_KEY = {
   retenues:"coffre-cfg-retenues", tables:"coffre-cfg-tables", mix:"coffre-cfg-mix",
   faussaire_dictee:"coffre-cfg-faussaire-dictee", faussaire_trou:"coffre-cfg-faussaire-trou", faussaire_correction:"coffre-cfg-faussaire-correction",
   deguiseur_verbe:"coffre-cfg-deguiseur-verbe", deguiseur_habille:"coffre-cfg-deguiseur-habille", deguiseur_infinitif:"coffre-cfg-deguiseur-infinitif",
+  deguiseur_habiller:"coffre-cfg-deguiseur-habiller",
+  pagaille_ordre:"coffre-cfg-pagaille-ordre", pagaille_intrus:"coffre-cfg-pagaille-intrus",
   menteur:"coffre-cfg-menteur"
 };
 
@@ -49,10 +60,11 @@ const FILOUS = [
   {id:"mix", nom:"Calcul mélangé", domaine:"Toutes tes opérations réglées, au hasard", art:"mix", ready:true, scope:"mix", combo:true, kind:"calc", categorie:"calcul"},
   {id:"deguiseur", nom:"Le Déguiseur", domaine:"Trouver le verbe, habillé ou en pyjama, l'infinitif", art:"deguiseur", ready:true, kind:"deguiseur", categorie:"francais"},
   {id:"faussaire", nom:"Le Faussaire", domaine:"Dictée, trou et corrections", art:"faussaire_mot", ready:true, kind:"faussaire", categorie:"francais"},
+  {id:"pagaille", nom:"Madame Pagaille", domaine:"L'ordre alphabétique : ranger et trouver l'intrus", art:"pagaille", ready:true, kind:"pagaille", categorie:"francais"},
   {id:"menteur", nom:"Le Menteur", domaine:"Quiz d'éveil, vrai ou faux", art:"menteur", ready:true, kind:"menteur", categorie:"eveil"}
 ];
 const FILOU_KIND = Object.fromEntries(FILOUS.map(f=>[f.id, f.kind]));
-const MULTI_ACTIVITY_FILOUS = new Set(["faussaire","deguiseur"]);
+const MULTI_ACTIVITY_FILOUS = new Set(["faussaire","deguiseur","pagaille"]);
 function currentKind(){ return MULTI_ACTIVITY_FILOUS.has(S.filou) ? S.activite : FILOU_KIND[S.filou]; }
 const FAUSSAIRE_ACTIVITIES = [
   {id:"dictee", nom:"Dictée", desc:"Écoute le mot et écris-le au clavier."},
@@ -62,9 +74,17 @@ const FAUSSAIRE_ACTIVITIES = [
 const DEGUISEUR_ACTIVITIES = [
   {id:"verbe", nom:"Trouver le verbe", desc:"Touche le verbe habillé dans la phrase."},
   {id:"habille", nom:"Habillé ou en pyjama ?", desc:"Le verbe en évidence est-il habillé ou en pyjama ?"},
-  {id:"infinitif", nom:"Écrire l'infinitif", desc:"Écris l'infinitif du verbe habillé."}
+  {id:"infinitif", nom:"Écrire l'infinitif", desc:"Écris l'infinitif du verbe habillé."},
+  {id:"habiller", nom:"Habiller les verbes", desc:"Le verbe est en pyjama : habille-le pour qu'il aille avec le pronom."}
 ];
-const ACTIVITIES_BY_FILOU = {faussaire: FAUSSAIRE_ACTIVITIES, deguiseur: DEGUISEUR_ACTIVITIES};
+const PAGAILLE_ACTIVITIES = [
+  {id:"ordre", nom:"Le grand livre en désordre", desc:"Touche les mots un par un, dans l'ordre alphabétique."},
+  {id:"intrus", nom:"Trouve l'intrus", desc:"Un seul mot est mal rangé : touche-le."}
+];
+/* Niveaux de Madame Pagaille : la lettre qu'il faut comparer pour ranger (l'école dit « la 1re lettre,
+   puis la 2e, puis la 3e, et ainsi de suite », fiche F11). */
+const PAGAILLE_NIVEAU_LABEL = {1:"1re lettre", 2:"2e lettre", 3:"3e lettre"};
+const ACTIVITIES_BY_FILOU = {faussaire: FAUSSAIRE_ACTIVITIES, deguiseur: DEGUISEUR_ACTIVITIES, pagaille: PAGAILLE_ACTIVITIES};
 const MENTEUR_THEME_LABEL = {temps:"Temps : saisons et mois", belgique:"Éveil : la Belgique", toussaint:"Éveil : Toussaint et fête des morts"};
 const CATEGORIES = [["calcul","Calcul"],["francais","Français"],["eveil","Éveil"]];
 function buildEpreuveTabs(deguiseurFusionOn){

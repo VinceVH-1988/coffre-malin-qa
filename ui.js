@@ -53,6 +53,11 @@ function scopedKey(filou){
     const c = S.cfgs.deguiseur[act];
     return `deguiseur:${act}:${sorted(c.series).join(",")}`;
   }
+  if(filou==="pagaille"){
+    const act = S.activite||"ordre";
+    const c = S.cfgs.pagaille[act];
+    return `pagaille:${act}:${sorted(c.series).join(",")}`;
+  }
   if(filou==="menteur"){
     return `menteur:${sorted(S.cfgs.menteur.themes).join(",")}`;
   }
@@ -60,7 +65,8 @@ function scopedKey(filou){
 }
 const PASS_TXT = {avec:"avec passage", sans:"sans passage", mix:"avec ou sans passage"};
 const FAUSSAIRE_ACT_LABEL = {dictee:"Dictée", trou:"Le trou du Faussaire", correction:"Repérer et corriger",
-  verbe:"Trouver le verbe", habille:"Habillé ou en pyjama ?", infinitif:"Écrire l'infinitif"};
+  verbe:"Trouver le verbe", habille:"Habillé ou en pyjama ?", infinitif:"Écrire l'infinitif", habiller:"Habiller les verbes",
+  ordre:"Le grand livre en désordre", intrus:"Trouve l'intrus"};
 const FILOU_LABEL = {retenues:"Le Faussaire des Retenues", tables:"Le Tricheur des Tables", mix:"Calcul mélangé"};
 function describeCombo(combo){
   if(!combo) return "Aucune épreuve réglée";
@@ -82,6 +88,13 @@ function describeKey(key){
     const act = j<0 ? rest : rest.slice(0,j);
     const series = j<0 ? "" : rest.slice(j+1);
     return series ? `${FAUSSAIRE_ACT_LABEL[act]||act} · séries ${series.split(",").join(", ")}` : `${FAUSSAIRE_ACT_LABEL[act]||act} · aucune série`;
+  }
+  if(filou==="pagaille"){
+    const j = rest.indexOf(":");
+    const act = j<0 ? rest : rest.slice(0,j);
+    const niv = j<0 ? "" : rest.slice(j+1);
+    const txt = niv ? niv.split(",").map(n=>PAGAILLE_NIVEAU_LABEL[n]||n).join(", ") : "";
+    return txt ? `${FAUSSAIRE_ACT_LABEL[act]||act} · ${txt}` : `${FAUSSAIRE_ACT_LABEL[act]||act} · aucune difficulté`;
   }
   if(filou==="menteur"){
     return rest ? `Le Menteur · thèmes ${rest.split(",").map(t=>MENTEUR_THEME_LABEL[t]||t).join(", ")}` : "Le Menteur · aucun thème";
@@ -146,6 +159,13 @@ function minuteurUnlock(){
 }
 $("minuteur-lock-unlock").addEventListener("click", ()=>pinOpen("minuteur"));
 
+/* Ajuste la taille de la réponse écrite à sa longueur, pour ne jamais déborder de la plaque. */
+function fitAnswer(){
+  const el=$("answer"), n=(el.textContent||"").length;
+  el.classList.toggle("long", n>8 && n<=13);
+  el.classList.toggle("xlong", n>13);
+}
+
 /* ---------- affichage ---------- */
 function buildBolts(){
   if(S.mode==="infini"||S.mode==="montre"){ $("bolts-l").innerHTML=""; $("bolts-r").innerHTML=""; return; }
@@ -153,9 +173,17 @@ function buildBolts(){
   $("bolts-l").innerHTML = '<span class="bolt"></span>'.repeat(left);
   $("bolts-r").innerHTML = '<span class="bolt"></span>'.repeat(n-left);
 }
+/* Ce que l'enfant enchaîne : des calculs, des phrases, des mots, des verbes ou des listes. */
+function uniteDe(kind){
+  if(kind==="calc") return "calculs";
+  if(kind==="verbe"||kind==="habille"||kind==="infinitif") return "phrases";
+  if(kind==="habiller") return "verbes";
+  if(kind==="ordre"||kind==="intrus") return "listes";
+  return "mots";
+}
 function leadText(){
   const kind = currentKind();
-  const unite = kind==="calc" ? "calculs" : (kind==="verbe"||kind==="habille"||kind==="infinitif") ? "phrases" : "mots";
+  const unite = uniteDe(kind);
   $("title").textContent = S.mode==="infini" ? "Mode infini" : S.mode==="montre" ? "Contre la montre" : "Le coffre des Filous";
   $("lead").innerHTML = S.mode==="infini"
     ? `Enchaîne les ${unite} justes le plus longtemps possible.`
@@ -171,10 +199,13 @@ function render(){
   if(kind==="verbe") return renderVerbe();
   if(kind==="habille") return renderHabille();
   if(kind==="infinitif") return renderInfinitif();
+  if(kind==="habiller") return renderHabiller();
+  if(kind==="ordre") return renderOrdre();
+  if(kind==="intrus") return renderIntrus();
   if(!S.q) return;
   const q=S.q, txt=`${q.a} ${SYM[q.op]} ${q.b} =`;
   $("calc").textContent = txt; $("calc").classList.toggle("long", txt.length>10);
-  const ans=$("answer"); ans.textContent=S.input; ans.classList.toggle("empty",!S.input);
+  const ans=$("answer"); ans.textContent=S.input; ans.classList.toggle("empty",!S.input); fitAnswer();
   const p=$("progress");
   if(S.mode==="infini"){ p.textContent = S.newRec ? `Série : ${S.streak} · Nouveau record !` : `Série : ${S.streak} · Record : ${S.records[S.recKey]||0}`; p.classList.toggle("rec",S.newRec); }
   else if(S.mode==="montre"){
@@ -189,9 +220,10 @@ function render(){
 /* ---------- accueil (écran du filou choisi) ---------- */
 function applyKindUI(){
   const kind = currentKind();
-  const isDeg = kind==="verbe"||kind==="habille"||kind==="infinitif";
+  const isDeg = kind==="verbe"||kind==="habille"||kind==="infinitif"||kind==="habiller";
+  const isPag = kind==="ordre"||kind==="intrus";
   $("pad").style.display = kind==="calc" ? "grid" : "none";
-  $("dictee-pad").classList.toggle("show", kind==="dictee"||kind==="infinitif");
+  $("dictee-pad").classList.toggle("show", kind==="dictee"||kind==="infinitif"||kind==="habiller");
   $("choice-pad").classList.toggle("show", kind==="trou"||kind==="correction");
   $("verbe-pad").classList.toggle("show", kind==="verbe");
   $("habille-pad").classList.toggle("show", kind==="habille");
@@ -200,7 +232,10 @@ function applyKindUI(){
   $("word-note").style.display = kind==="dictee" ? "block" : "none";
   $("word-zones").style.display = (kind==="trou"||kind==="correction") ? "block" : "none";
   $("sentence-zone").style.display = isDeg ? "flex" : "none";
-  $("answer").style.display = (kind==="calc"||kind==="dictee"||kind==="infinitif") ? "flex" : "none";
+  $("pagaille-zone").style.display = isPag ? "flex" : "none";
+  $("pagaille-pad").classList.toggle("show", isPag);
+  $("pagaille-validate").style.display = kind==="ordre" ? "" : "none";
+  $("answer").style.display = (kind==="calc"||kind==="dictee"||kind==="infinitif"||kind==="habiller") ? "flex" : "none";
   $("go-montre").style.display = kind==="calc" ? "flex" : "none";
 }
 function goHome(){
@@ -216,7 +251,7 @@ function goHome(){
   $("home-art").innerHTML = ART[f.art];
   $("home-back").textContent = acts ? "Épreuves" : "Filous";
   $("filous-link").textContent = acts ? "Épreuves" : "Filous";
-  const unite = kind==="calc" ? "calculs" : (kind==="verbe"||kind==="habille"||kind==="infinitif") ? "phrases" : "mots";
+  const unite = uniteDe(kind);
   $("desc-coffre").textContent = isWord ? `Réussis ${curCfg().target} ${unite} d'affilée pour ouvrir le coffre.` : `Réussis ${curCfg().target} calculs d'affilée pour ouvrir le coffre.`;
   const r=currentRecord();
   $("desc-infini").textContent = r ? `Des ${unite} sans fin. Ton record : ${r}` : `Des ${unite} sans fin. Établis ton premier record !`;
@@ -260,6 +295,9 @@ function submit(){
   if(kind==="dictee") return submitWord();
   if(kind==="trou"||kind==="correction") return;
   if(kind==="infinitif") return submitInfinitif();
+  if(kind==="habiller") return submitHabiller();
+  if(kind==="ordre") return submitOrdre();
+  if(kind==="intrus") return;
   if(kind==="verbe"){ if(S.verbeStep==="infinitif") return submitVerbe(); return; }
   if(kind==="habille") return;
   if(S.locked || !S.input) return;
@@ -419,11 +457,12 @@ async function loadSettingsChild(id){
   draft = {
     retenues:clone(bundle.cfgs.retenues), tables:clone(bundle.cfgs.tables), mix:clone(bundle.cfgs.mix),
     faussaire:{dictee:clone(bundle.cfgs.faussaire.dictee), trou:clone(bundle.cfgs.faussaire.trou), correction:clone(bundle.cfgs.faussaire.correction)},
-    deguiseur:{verbe:clone(bundle.cfgs.deguiseur.verbe), habille:clone(bundle.cfgs.deguiseur.habille), infinitif:clone(bundle.cfgs.deguiseur.infinitif)},
+    deguiseur:{verbe:clone(bundle.cfgs.deguiseur.verbe), habille:clone(bundle.cfgs.deguiseur.habille), infinitif:clone(bundle.cfgs.deguiseur.infinitif), habiller:clone(bundle.cfgs.deguiseur.habiller)},
+    pagaille:{ordre:clone(bundle.cfgs.pagaille.ordre), intrus:clone(bundle.cfgs.pagaille.intrus)},
     menteur:clone(bundle.cfgs.menteur),
     minuteur:clone(bundle.minuteur)
   };
-  draftFilousActifs = clone(bundle.filousActifs || {retenues:true, tables:true, faussaire:true, deguiseur:true, menteur:true});
+  draftFilousActifs = clone(bundle.filousActifs || {retenues:true, tables:true, faussaire:true, deguiseur:true, pagaille:true, menteur:true});
   draftStats = bundle.stats || {};
   draftRecords = bundle.records || {};
   const epreuveTabs = buildEpreuveTabs(draft.deguiseur.verbe.fusionInfinitif !== false);
@@ -436,7 +475,7 @@ function cfgAt(obj, tab){ const i=tab.indexOf(":"); return i<0 ? obj[tab] : obj[
 function hasActiveOps(filouId, c){
   if(filouId==="retenues") return (c.add.on&&c.add.forms.length)||(c.sub.on&&c.sub.forms.length);
   if(filouId==="tables") return (c.mul.on&&(c.mul.tables.length||c.mul.extra.length))||(c.div.on&&c.div.tables.length);
-  if(filouId==="faussaire"||filouId.startsWith("faussaire:")||filouId==="deguiseur"||filouId.startsWith("deguiseur:")) return c.series && c.series.length>0;
+  if(filouId==="faussaire"||filouId.startsWith("faussaire:")||filouId==="deguiseur"||filouId.startsWith("deguiseur:")||filouId==="pagaille"||filouId.startsWith("pagaille:")) return c.series && c.series.length>0;
   if(filouId==="menteur") return c.themes && c.themes.length>0;
   return true;
 }
@@ -445,7 +484,7 @@ function ensureMinOp(filouId, c){
     c.add.on=true; if(!c.add.forms.length) c.add.forms=["du+u"];
   }else if(filouId==="tables" && !hasActiveOps("tables",c)){
     c.mul.on=true; if(!c.mul.tables.length && !c.mul.extra.length) c.mul.tables=[2,5,10];
-  }else if((filouId==="faussaire"||filouId.startsWith("faussaire:")||filouId==="deguiseur"||filouId.startsWith("deguiseur:")) && !hasActiveOps(filouId,c)){
+  }else if((filouId==="faussaire"||filouId.startsWith("faussaire:")||filouId==="deguiseur"||filouId.startsWith("deguiseur:")||filouId==="pagaille"||filouId.startsWith("pagaille:")) && !hasActiveOps(filouId,c)){
     c.series=[1];
   }else if(filouId==="menteur" && !hasActiveOps("menteur",c)){
     c.themes=["temps"];
@@ -613,10 +652,18 @@ function fillSettings(){
     for(const sNum of seriesAvailable) sl.appendChild(chip("Série "+sNum, df.series.includes(sNum), ()=>toggleIn(df.series,sNum)));
   }else if(settingsTab.startsWith("deguiseur:")){
     const df=d;
-    const seriesAvailable=[...new Set(CONTENU.deguiseur.map(w=>w.serie))].sort((a,b)=>a-b);
+    const source = settingsTab==="deguiseur:habiller" ? (CONTENU.conjugaison||[]) : CONTENU.deguiseur;
+    const seriesAvailable=[...new Set(source.map(w=>w.serie))].sort((a,b)=>a-b);
     const sl=document.querySelector(`[data-list="${settingsTab}-series"]`); sl.innerHTML="";
     for(const sNum of seriesAvailable) sl.appendChild(chip("Série "+sNum, df.series.includes(sNum), ()=>toggleIn(df.series,sNum)));
     if(settingsTab==="deguiseur:verbe") $("s-fusion-infinitif").checked = df.fusionInfinitif !== false;
+    if(settingsTab==="deguiseur:habiller") $("s-radical-preecrit").checked = df.radicalPreEcrit !== false;
+  }else if(settingsTab.startsWith("pagaille:")){
+    const dp=d;
+    const act = settingsTab.slice("pagaille:".length);
+    const niveaux=[...new Set((CONTENU.pagaille||[]).filter(x=>x.type===act).map(x=>Number(x.niveau)))].sort((a,b)=>a-b);
+    const nl=document.querySelector(`[data-list="${settingsTab}-niveaux"]`); nl.innerHTML="";
+    for(const n of niveaux) nl.appendChild(chip(PAGAILLE_NIVEAU_LABEL[n]||("Niveau "+n), dp.series.includes(n), ()=>toggleIn(dp.series,n)));
   }else if(settingsTab==="menteur"){
     const dm=d;
     const themesAvailable=[...new Set(CONTENU.menteur.map(x=>x.theme))];
@@ -633,6 +680,7 @@ function fillSettings(){
 }
 document.querySelectorAll('input[data-op]').forEach(sw=>sw.addEventListener("change",()=>{ draft[settingsTab][sw.dataset.op].on=sw.checked; fillSettings(); }));
 $("s-fusion-infinitif").addEventListener("change",e=>{ draft.deguiseur.verbe.fusionInfinitif = e.target.checked; fillSettings(); });
+$("s-radical-preecrit").addEventListener("change",e=>{ draft.deguiseur.habiller.radicalPreEcrit = e.target.checked; fillSettings(); });
 $("s-code").addEventListener("input",e=>{ cfgAt(draft,settingsTab).code=e.target.value.replace(/\D/g,""); });
 $("s-pin").addEventListener("input",e=>{ draftPin=e.target.value.replace(/\D/g,"").slice(0,4); });
 $("s-target").addEventListener("input",e=>{ cfgAt(draft,settingsTab).target=e.target.value; });
@@ -662,7 +710,7 @@ $("s-reset").addEventListener("click",async ()=>{
 $("s-save").addEventListener("click",async ()=>{
   if(!/^\d{4}$/.test(String(draftPin||""))){ $("warn").textContent="Le code du parent doit faire exactement 4 chiffres."; return; }
 
-  for(const key of ["retenues","tables","mix","faussaire:dictee","faussaire:trou","faussaire:correction","deguiseur:verbe","deguiseur:habille","deguiseur:infinitif"]){
+  for(const key of ["retenues","tables","mix","faussaire:dictee","faussaire:trou","faussaire:correction","deguiseur:verbe","deguiseur:habille","deguiseur:infinitif","deguiseur:habiller","pagaille:ordre","pagaille:intrus"]){
     const d=cfgAt(draft,key);
     d.code = String(d.code||"").replace(/\D/g,"") || "5472";
     d.target = Math.min(20,Math.max(2,parseInt(d.target,10)||6));
@@ -690,7 +738,8 @@ $("s-save").addEventListener("click",async ()=>{
 
   // les épreuves du Faussaire et du Déguiseur ne peuvent jamais rester sans série active : correction silencieuse
   for(const act of ["dictee","trou","correction"]) ensureMinOp("faussaire:"+act, draft.faussaire[act]);
-  for(const act of ["verbe","habille","infinitif"]) ensureMinOp("deguiseur:"+act, draft.deguiseur[act]);
+  for(const act of ["verbe","habille","infinitif","habiller"]) ensureMinOp("deguiseur:"+act, draft.deguiseur[act]);
+  for(const act of ["ordre","intrus"]) ensureMinOp("pagaille:"+act, draft.pagaille[act]);
   ensureMinOp("menteur", draft.menteur);
 
   draftFilousActifs = draftFilousActifs || {};
@@ -714,6 +763,9 @@ $("s-save").addEventListener("click",async ()=>{
   await store.set(pk(CFG_STORE_KEY.deguiseur_verbe,settingsChildId), draft.deguiseur.verbe);
   await store.set(pk(CFG_STORE_KEY.deguiseur_habille,settingsChildId), draft.deguiseur.habille);
   await store.set(pk(CFG_STORE_KEY.deguiseur_infinitif,settingsChildId), draft.deguiseur.infinitif);
+  await store.set(pk(CFG_STORE_KEY.deguiseur_habiller,settingsChildId), draft.deguiseur.habiller);
+  await store.set(pk(CFG_STORE_KEY.pagaille_ordre,settingsChildId), draft.pagaille.ordre);
+  await store.set(pk(CFG_STORE_KEY.pagaille_intrus,settingsChildId), draft.pagaille.intrus);
   await store.set(pk(CFG_STORE_KEY.menteur,settingsChildId), draft.menteur);
   PIN = draftPin; await store.set("brigade-pin", PIN);
 
@@ -721,7 +773,7 @@ $("s-save").addEventListener("click",async ()=>{
   if(settingsChildId===ACTIVE_ID){
     S.filousActifs = draftFilousActifs;
     S.minuteur = draft.minuteur;
-    S.cfgs.retenues = dr; S.cfgs.tables = dt; S.cfgs.mix = draft.mix; S.cfgs.faussaire = draft.faussaire; S.cfgs.deguiseur = draft.deguiseur; S.cfgs.menteur = draft.menteur;
+    S.cfgs.retenues = dr; S.cfgs.tables = dt; S.cfgs.mix = draft.mix; S.cfgs.faussaire = draft.faussaire; S.cfgs.deguiseur = draft.deguiseur; S.cfgs.pagaille = draft.pagaille; S.cfgs.menteur = draft.menteur;
   }
 
   $("settings").classList.remove("show");
